@@ -17,8 +17,8 @@ The destination for a redirection is a file or a device. To discard the output r
 
 Redirector | Explanation
 --- | ---
-> (1>) | STDOUT (Overwrites)
->> (1>>) | STDOUT (Appends)
+ > (1>) | STDOUT (Overwrites)
+ >> (1>>) | STDOUT (Appends)
 2> | STDERR
 2>&1 | Redirects STDERR to the same destination as STDOUT
 < (0<) | STDIN
