@@ -24,3 +24,18 @@ Redirector | Explanation
 \< (0\<) | STDIN
 
 To have the output of a program be the input of another program, we use `piping`. e.g. `ps aux | less`. In piping, all the processes are launched asynchronously.
+
+### History
+
+Bash is configured by default to keep the last 1000 commands a user used. `.bash_history` contains these information and it is updated when a shell session is closed.
+
+The `history` command shows a list of all commands in the Bash history.
+
+Option | Description
+--- | ---
+`-d number` | deletes a specific entry
+`-c` | clears the current history
+`-w` | write current history to `.bash_history`
+
+* **!number**: execute a command with a specific number
+* **!sometext**: execute the last command containing a specific text
