@@ -1,6 +1,10 @@
 # RHCSA9-Notes
 These are my notes for the Red Hat Certified System Administrator 9 (RHCSA 9) certificate. Feel free to use them as a study material or suggest any improvements :)
 
+## Table of Contents
+
+* [Using Essential Tools](#using-essential-tools)
+
 ## Using Essential Tools
 
 ### Finding the origin of commands
@@ -35,7 +39,9 @@ Option | Description
 --- | ---
 `-d number` | deletes a specific entry
 `-c` | clears the current history
-`-w` | write current history to `.bash_history`
+`-w` | writes current history to `.bash_history`
 
 * **!number**: execute a command with a specific number
 * **!sometext**: execute the last command containing a specific text
+
+We can type `history -w` right after `history -c` to erase the contents of `.bash_history`
