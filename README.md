@@ -4,6 +4,7 @@ These are my notes for the Red Hat Certified System Administrator 9 (RHCSA 9) ce
 ## Table of Contents
 
 * [Using Essential Tools](#using-essential-tools)
+* [Essential File Management Tools](#essential-file-management-tools)
 
 ## Using Essential Tools
 
@@ -45,3 +46,27 @@ Option | Description
 * **!sometext**: execute the last command containing a specific text
 
 We can type `history -w` right after `history -c` to erase the contents of `.bash_history`
+
+### The Shell Environment
+
+Variable names start with `$` sign. e.g, `$PATH`. To view the variables defined in the current shell environment, we can use the `env` commands.
+
+The four configuration files:
+* **/etc/profile**: Processed by all users upon login
+* **/etc/bashrc**: Processes when subshells are started
+* **~/.bash_profile**: User-specific login shells are defined
+* **~/.bashrc**: User-specific files for subshells
+
+Messages in `/etc/motd` display after user has successfully logged in to a shell. Convenient way to inform users about an issue or a security policy. Messages in `/etc/issue` are displayed before log in. These are good to specify login instructions.
+
+### Finding Help
+
+Nearly all commands support the `--help` option and will display a usage summary when using this option. Another option is the `man` command. In the `man` page, the most useful information which are the examples are located at the bottom of the page.
+To search in the **mandb** database, we can use `man -k` or `apropos` which are equivalent commands. We can then filter out the result using the `grep` command, more on this later.
+To update the **mandb** database, use `mandb`. `apropos` code sections:
+* **1**: Executable programs or shell commands
+* **5**: File formats and conventions
+* **8**: System administration commands
+The two other tools to get even more information about the system are `info` and `pinfo`. And finally, we can find the documentation of large projects in `/usr/share/doc`.
+
+## Essential File Management Tools
