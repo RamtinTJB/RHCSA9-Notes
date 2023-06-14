@@ -70,3 +70,25 @@ To update the **mandb** database, use `mandb`. `apropos` code sections:
 The two other tools to get even more information about the system are `info` and `pinfo`. And finally, we can find the documentation of large projects in `/usr/share/doc`.
 
 ## Essential File Management Tools
+
+### The File System Hierarchy (FSH)
+
+A **mount** is a connection between a device and a directory. the **root directory (/)** is the starting point.Below is an overview of the FHS:
+
+Directory | Use
+--- | ---
+**/** | The root directory (starting point)
+**/boot** | All the stuff required to boot the Linux
+**/dev** | Files for accessing physical devices
+**/etc** | All the configurations. e.g. `profile` or `bashrc`
+**/home** | For local user home directory. Most users spend most of their time here
+**/media,/mnt** | For mounting external devices
+**/opt** | Optional packages
+**/proc** | Proc file system, gives access to kernel information
+**/root** | The home directory for the root user
+**/run** | User-specific information since last boot
+**/srv** | Used for data services like NFS, FTP, HTTP
+**/sys** | Interface to different devices managed by the Linux kernel
+**/tmp** | Temporary files that can be deleted without warning
+**/usr** | Subdirectories for programs, libraries, and their documentations. e.g. `/usr/bin`
+**/var** | Files that may change in size dynamically. e.g. `log files`
