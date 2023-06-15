@@ -92,3 +92,15 @@ Directory | Use
 **/tmp** | Temporary files that can be deleted without warning
 **/usr** | Subdirectories for programs, libraries, and their documentations. e.g. `/usr/bin`
 **/var** | Files that may change in size dynamically. e.g. `log files`
+
+Reasons to work with multiple mounts:
+* High activity in one area won't fill up the entire system
+* Possible to set different security options for different devices
+* Easy to make additional storage available
+`/boot` and `/boot/EFI` are usually on separate devices because the Kernel cannot access the root directory during boot. Since `/var` can vary in size it also usually has a dedicated mount. The other two directories that are commonly on separate devices are `/home` and `/usr`
+
+### Getting Information about Current Mounts
+
+* **`mount`**: This command gives an overview of all the mounted devices. It reads this information from `/proc/mounts`
+* **`df -Th`**: It shows available disk space on mounted devices. `-h`: human readable, `-T`: Show filesystem
+* **findmnt**: Shows mounts and their relationships
