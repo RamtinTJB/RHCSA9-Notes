@@ -104,3 +104,20 @@ Reasons to work with multiple mounts:
 * **`mount`**: This command gives an overview of all the mounted devices. It reads this information from `/proc/mounts`
 * **`df -Th`**: It shows available disk space on mounted devices. `-h`: human readable, `-T`: Show filesystem
 * **findmnt**: Shows mounts and their relationships
+
+### Managing and Working with Directories
+
+Below is the summary of the commands and options we need to know in this section:
+* `cd`: moving between directories
+* `mkdir`: creating a directory
+* `pwd`: displaying the current directory's absolute path
+* `ls`: listing files and directories. A useful option is `-lrt` which lists the most recently modified files last.
+* `touch`: creating a new file
+* `cp`: copying files.
+    * To keep the current permissions of the files, use `-a`
+    * To copy all files, regular and hidden: `cp -a /somedir/. .`
+    * To copy only hidden files: `cp /somedir/.* /tmp`
+* `mv`: moving files and directories
+* `rm`: removing files and directories. Use the `-rf` option to delete a folder with all its contents
+
+### Using Hard and Soft Links
