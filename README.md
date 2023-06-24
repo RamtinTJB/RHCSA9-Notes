@@ -132,3 +132,7 @@ The name of the file is referred to as a **hard link**, so every file has at lea
 All **hard links** must exist on the same device, they cannot point to directories, and when the last hard link is removed, file data is also removed.
 
 **Symbolic links** on the other hand point to the name of the file which makes them more flexible. They can point to files on other devices and directories.
+
+To create links we use the following command: `ln [-s] file/folder link-name`. `-s` makes it a symbolic link. e.g. `ln -s /etc/hosts .` creates a symbolic link to the file `/etc/hosts` in the current directory.
+
+We can view the links using `ls -l`. if the file is a symbolic link, the first character of the line is going to be `l`. If we file is a hard link, the output will the hard link counter.
