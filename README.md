@@ -121,3 +121,14 @@ Below is the summary of the commands and options we need to know in this section
 * `rm`: removing files and directories. Use the `-rf` option to delete a folder with all its contents
 
 ### Using Hard and Soft Links
+
+Linux stores all the administrative information of the files in **inodes**. **inodes** contain the following the information:
+* The data block where the file contents are stores
+* The creation, access, and modification date
+* Permissions
+* File owners
+
+The name of the file is referred to as a **hard link**, so every file has at least one **hard link**.
+All **hard links** must exist on the same device, they cannot point to directories, and when the last hard link is removed, file data is also removed.
+
+**Symbolic links** on the other hand point to the name of the file which makes them more flexible. They can point to files on other devices and directories.
