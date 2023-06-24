@@ -136,3 +136,13 @@ All **hard links** must exist on the same device, they cannot point to directori
 To create links we use the following command: `ln [-s] file/folder link-name`. `-s` makes it a symbolic link. e.g. `ln -s /etc/hosts .` creates a symbolic link to the file `/etc/hosts` in the current directory.
 
 We can view the links using `ls -l`. if the file is a symbolic link, the first character of the line is going to be `l`. If we file is a hard link, the output will the hard link counter.
+
+### Working with Archives and Compressed Files
+
+the Tape ARchiver (**tar**) is used to manage archive files. we usually use `-vf` options with all the other options. `-v` makes the output verbose and `-f` specifies the tar file we intend to work with. options:
+
+* `-c`: creating an archive. `tar -cvf /root/homes.tar /home`
+* `-u`: update an existing archive. `tar -uvf /root/homes.tar /home`
+* `-t`: list the contents of an existing archive
+* `-x`: extract an archive. Can be used with `-C` to specify the target directory of extraction
+* `-z (gzip), -J (xz), -j (bzip2)`: to compress while creating an archive. No need to use these for extraction, **tar** will automatically detect the compression method during extraction.
