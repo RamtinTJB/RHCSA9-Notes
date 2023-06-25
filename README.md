@@ -5,6 +5,7 @@ These are my notes for the Red Hat Certified System Administrator 9 (RHCSA 9) ce
 
 * [Using Essential Tools](#using-essential-tools)
 * [Essential File Management Tools](#essential-file-management-tools)
+* [Working with Text Files](#working-with-text-files)
 
 ## Using Essential Tools
 
@@ -146,3 +147,19 @@ the Tape ARchiver (**tar**) is used to manage archive files. we usually use `-vf
 * `-t`: list the contents of an existing archive
 * `-x`: extract an archive. Can be used with `-C` to specify the target directory of extraction
 * `-z (gzip), -J (xz), -j (bzip2)`: to compress while creating an archive. No need to use these for extraction, **tar** will automatically detect the compression method during extraction.
+
+## Working with Text Files
+
+### Common Text File Tools
+
+* **less**: opens the text in a pager, allows for easy reading of long texts. The controls inside `less` are similar to `vim`.
+    * `f` and `b`: Go one page forward or backward
+    * `/` and `?`: Used for forward and backward searching. Repeat the search by pressing `n`.
+    * `q`: To quit `less`
+* **cat**: dumps the contents of the file on the screen.  
+* **head** and **tail**: these two  commands will show the first or last n lines of a file. 
+    * `tail -n 5 /etc/passwd` = `tail -5 /etc/passwd` shows the last 5 lines of the file `/etc/passwd`
+    * `head -11 /etc/passwd | tail -1` will show line number 11 of the `/etc/passwd` file
+    * `tail -f` will watch the file in real time
+* **cut**: used for filtering specific columns.
+    * `cut -d : -f 1 /etc/passwd` will list all the users because the fields in the file `/etc/passwd` are separated by `:` and the username is the first field (`-f 1`)
