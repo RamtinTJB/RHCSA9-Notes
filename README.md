@@ -123,7 +123,7 @@ Below is the summary of the commands and options we need to know in this section
 
 ### Using Hard and Soft Links
 
-Linux stores all the administrative information of the files in **inodes**. **inodes** contain the following the information:
+Linux stores all the administrative information of the files in **inodes**. **inodes** contain the following information:
 * The data block where the file contents are stores
 * The creation, access, and modification date
 * Permissions
@@ -163,3 +163,24 @@ the Tape ARchiver (**tar**) is used to manage archive files. we usually use `-vf
     * `tail -f` will watch the file in real time
 * **cut**: used for filtering specific columns.
     * `cut -d : -f 1 /etc/passwd` will list all the users because the fields in the file `/etc/passwd` are separated by `:` and the username is the first field (`-f 1`)
+* **sort**: sorts in byte order, based on the ASCII table.
+    * `sort -rn` will sort numerically in reverse order
+    * `sort -k3 -t : /etc/passwd` will sort the third column using the field separator :
+* **wc**: will show the number of lines, words, and characters
+
+### Using grep
+
+refer to [Regex Cheat Sheet](https://www.rexegg.com/regex-quickstart.html) for a quick regex primer. It is always recommended to wrap regex patterns in single quotes and use the `-E` option to enable extended regular expression parsing. Some useful options:
+* `-i`: Case insensitive matching
+* `-v`: Excludes lines matching the pattern. Useful for searching in running processes: e.g. `ps aux | grep python | grep -v grep`
+* `-r`: Searches files in the current directory and all subdirectories
+* `-e`: Matches more than one regular expression
+* `-A <number>`: Shows \<number\> of lines after the matching regular expression
+* `-B <number>`: Shows \<number\> of lines before the matching regular expression
+
+### Awk and sed
+awk and sed are both extremely powerful and feature rich tools. For the sake of this exam, we only need to know a few use cases for these tools:
+* `awk -F : '/user/ { print $4 }' /etc/passwd` : print the fourth field of any line containinig the word user
+* `sed -n 5p /etc/passwd`: print the fifth line of the file
+* `sed -i s/old-text/new-text/g somefile`: replace old-text with new-text in the entire file
+* `sed -i -e '2d;20,25d' somefile`: delete lines 2 and 20 through 25 in the file
