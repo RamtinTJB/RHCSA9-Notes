@@ -6,6 +6,7 @@ These are my notes for the Red Hat Certified System Administrator 9 (RHCSA 9) ce
 * [Using Essential Tools](#using-essential-tools)
 * [Essential File Management Tools](#essential-file-management-tools)
 * [Working with Text Files](#working-with-text-files)
+* [Connecting to Red Hat](#connecting-to-red-hat)
 
 ## Using Essential Tools
 
@@ -184,3 +185,26 @@ awk and sed are both extremely powerful and feature rich tools. For the sake of 
 * `sed -n 5p /etc/passwd`: print the fifth line of the file
 * `sed -i s/old-text/new-text/g somefile`: replace old-text with new-text in the entire file
 * `sed -i -e '2d;20,25d' somefile`: delete lines 2 and 20 through 25 in the file
+
+## Connecting to Red Hat
+
+**Important Distinction**: _console_ is the environment the user is looking at whereas _terminal_ is an environment that is opened on the console and provides access to a nongraphical shell.
+
+To open a root shell type `sudo -i` (without password) or `su -` (with password). These commands work for authorized users
+
+### Virtual Terminals
+Virtual terminals give access to nongraphical shells that are isolated. They correspond to device files in the `/dev` directory, e.g. `/dev/tty1` corresponds to virtual terminal 1. We can switch to virtual terminals by either pressing `ALT-F{#}` or by typing the command `chvt {#}` in the terminal.
+
+### Pseudo Terminals
+Terminal windows that are opened in a graphical environment have a pseudo terminal file associated with them. For instance, `/dev/pts/1` refers to the first graphical terminal window
+
+The command `w` gives an overview of all users who are currently logged in.
+
+### Booting, Rebooting, and Shutting Down
+
+* `systemctl reboot` or `reboot`
+* `systemctl halt` or `halt`
+* `systemctl poweroff` or `poweroff`. This command talks to the power management on the machine as opposed to `halt`
+* emergency reset (doesn't save anything): `echo b > /proc/sysrq-trigger`
+
+### SSH
