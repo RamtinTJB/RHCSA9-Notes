@@ -208,3 +208,34 @@ The command `w` gives an overview of all users who are currently logged in.
 * emergency reset (doesn't save anything): `echo b > /proc/sysrq-trigger`
 
 ### SSH
+
+SSH stand for Secure SHell. It is a common method of accessing a remote server in an encrypted way. On the server, the `sshd` service must be running (default port is 22) and it should not be blocked by the firewall.
+
+command: `ssh username@hostaddress`. Use `-p` option if the port is other than 22. if username is ommitted, ssh tries to login with the same username on the local machine, granted that it exists on the server.
+
+After the first login, the fingerprint of the host is going to be stored in `~/.ssh/known_hosts`. If the fingerprint changes at a later time, that specific line can be removed from this file.
+
+#### Graphical Applications in SSH
+
+if the `X server` is running on the SSH client computer, and the remote host allows display screens, we can use the `-Y` option with `ssh` to run graphical applications in an SSH Environment. Alternatively, we can write the following line in `/etc/ssh/ssh_config`:
+
+`ForwardX11 yes`
+
+#### Copying Files using SCP
+
+`scp /etc/hosts username@server:/tmp` copies `/etc/hosts` to server. Use `-r` for recursive copying and `-P` to use a port other than 22.
+
+#### Using rsync to Synchronize Files
+
+`rsync` uses SSH to synchronize files (only the differences). Options:
+* `-r`: entire directory tree
+* `-l`: Synchronize links
+* `-p`: preserve permissions
+* `-n`: dry run
+* `-a`: archive mode. The entire directory tree and file properties will be synced
+* `-A`: `-a` + ACLs
+* `-X`: syncs SELinux context
+
+#### Authenticate using Private/Public key pair
+
+Use `ssh-keygen` to generate a pair of keys on the client machine. To copy the public key over to the server, use `ssh-copy-id` (prompted with password). The public key is stored in `~/.ssh/authorized_keys` in the server. By doing this, you don't need to enter your password every time you want to SSH into the server.
