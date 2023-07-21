@@ -7,6 +7,7 @@ These are my notes for the Red Hat Certified System Administrator 9 (RHCSA 9) ce
 * [Essential File Management Tools](#essential-file-management-tools)
 * [Working with Text Files](#working-with-text-files)
 * [Connecting to Red Hat](#connecting-to-red-hat)
+* [User and Group Management](#user-and-group-management)
 
 ## Using Essential Tools
 
@@ -239,3 +240,30 @@ if the `X server` is running on the SSH client computer, and the remote host all
 #### Authenticate using Private/Public key pair
 
 Use `ssh-keygen` to generate a pair of keys on the client machine. To copy the public key over to the server, use `ssh-copy-id` (prompted with password). The public key is stored in `~/.ssh/authorized_keys` in the server. By doing this, you don't need to enter your password every time you want to SSH into the server.
+
+## User and Group Management
+
+**root** is the default privileged user. It has access to everything. In most modern systems, the **root** user is disabled.
+
+To get information about the current user or any other user, we can use the `id` command, e.g. `id ramtin`.
+
+### Running commands with elevated permissions
+
+#### Using su
+`su` switches to another user in the current subshell. If used with no username, it will switch to the root user. Using `su -` is better because it automatically loads the environment variables of the target user after switching.
+
+#### Using sudo
+`sudo` gives non root users administrator permission to perform specific tasks. The sudo permissions are defined in the sudoers file (`/etc/sudoers`) which can be edited with the `visudo` command.
+For example, to allow the user `ramtin` to run `passwd` and `useradd` with administrator priviliges without being able to change the **root** password, we add the following line to this file:
+
+`ramtin ALL=/usr/bin/useradd, /usr/bin/passwd, ! /usr/bin/passwd root`
+
+A better practice is to create a file in `/etc/sudoers.d` directory and add these extra permission there. This way, the original sudoers file remains intact.
+
+Piping commands in `sudo`: `sudo sh -c "rpm -qa | grep ssh"`
+
+When someone uses `sudo` and enters their password successfully, they aren't prompted for the password in the subsequent `sudo` calls for 5 minutes. To change the duration to 240 minutes, we can add the following line in the sudoers file:
+
+`Defaults timestamp_timeout=240`
+
+### Creating and Managing User Accounts
