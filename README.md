@@ -267,3 +267,26 @@ When someone uses `sudo` and enters their password successfully, they aren't pro
 `Defaults timestamp_timeout=240`
 
 ### Creating and Managing User Accounts
+
+Types of accounts: **Normal Accounts** are for users who work on the server. **System Accounts** are used by the services that run on the server.
+
+#### Fields in /etc/passwd
+`user:x:1000:1001:user:/home/user:/bin/bash`
+
+`username:password:UID:GID:Comment:Directory:Shell`
+
+* **UID**: Each user has a unique User ID. 0 is reserved for root. numbers lower than 1000 are typically for system accounts.  The range for UIDs is defined in `/etc/login.defs`
+* **GID**: Each user is a member of at least one group. The info is stored in `/etc/group`
+* **Directory**: The home directory for the user
+
+#### Fields in /etc/shadow
+
+* Login name
+* Encrypted password
+* Days since Jan. 1, 1970, that the password was last changed
+* Days before password may be changed
+* Days after which password must be changed
+* Days before password is to expire that user is warned
+* Days after password expires that account is disabled
+* days since Jan. 1, 1970, that account is disabled
+* for future use (probably will never be used)
